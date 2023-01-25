@@ -49,4 +49,14 @@ class TasksController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+
+  def task_params
+    params.require(:task).permit(:title, :description, :project_id, :phase_id, :collaborator_id, :contact_id, :issue)
+  end
+
+  def set_task
+    @task = Task.find(params[:id])
+  end
 end
